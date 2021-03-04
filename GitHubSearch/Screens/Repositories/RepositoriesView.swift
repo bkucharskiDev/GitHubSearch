@@ -20,7 +20,7 @@ enum RepositoriesViewAction {
 
 struct RepositoriesViewEnvironment {
     
-    var searchForRepositories: (_ phrase: String) -> Future<[Repository], Error>
+    var searchForRepositories: (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>
     
 }
 
@@ -28,6 +28,8 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
     switch action {
     case let .textProvided(text):
         state.searchPhrase = text
+        /// TypingCompletionId acts as unique id (hash value). It could be plain string also.
+        /// However it adds extra protection, as it's almost impossible to duplicate it.
         struct TypingCompletionId: Hashable {}
         return Effect(value: .searchForRepositories)
             // Debounce typing for 1 second.
@@ -35,8 +37,6 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
     case .searchForRepositories:
         state.isAlertPresented = false
         return environment.searchForRepositories(state.searchPhrase)
-            .subscribe(on: DispatchQueue.main)
-            .catchToEffect()
             .flatMap { result -> Effect<RepositoriesViewAction, Never> in
                 switch result {
                 case let .success(repositories):
@@ -45,6 +45,7 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
                     return Effect(value: .error)
                 }
             }
+            .receive(on: DispatchQueue.main)
             .eraseToEffect()
     case let .repositoryTapped(url):
         state.urlToShow = url
@@ -84,13 +85,10 @@ struct RepositoriesView: View {
                     )
                 )
                 .padding()
-                
                 List {
                     ForEach(viewStore.state.repositories) { repository in
-                        Text(repository.url.absoluteString)
-                            .onTapGesture {
-                                viewStore.send(.repositoryTapped(repository.url))
-                            }
+                        Text(repository.name)
+                            .onTapGesture { viewStore.send(.repositoryTapped(repository.url)) }
                     }
                 }
             }
@@ -113,6 +111,6 @@ struct RepositoriesView_Previews: PreviewProvider {
     static var previews: some View {
         RepositoriesView(store: Store(initialState: RepositoriesView.ViewState(),
                                  reducer: repositoriesReducer,
-                                 environment: RepositoriesViewEnvironment(searchForRepositories: { _ in Future { _ in } })))
+                                 environment: RepositoriesViewEnvironment(searchForRepositories: { _ in .none })))
     }
 }

@@ -15,7 +15,7 @@ struct GitHubSearchApp: App {
         WindowGroup {
             RepositoriesView(store: Store(initialState: RepositoriesView.ViewState(),
                                           reducer: repositoriesReducer,
-                                          environment: RepositoriesViewEnvironment.init(searchForRepositories: { _ in Future { _ in } })))
+                                          environment: RepositoriesViewEnvironment(searchForRepositories: RepositoriesClient().searchForRepositories)))
         }
     }
 }
