@@ -15,6 +15,7 @@ enum RepositoriesViewAction {
     case repositoryTapped(URL)
     case repositoriesFetched([Repository])
     case alertDismissed
+    case webViewDismissed
     case error
 }
 
@@ -67,6 +68,9 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
     case .alertDismissed:
         state.isAlertPresented = false
         return .none
+    case .webViewDismissed:
+        state.urlToShow = nil
+        return .none
     }
 }
 
@@ -92,7 +96,8 @@ struct RepositoriesView: View {
                         send: RepositoriesViewAction.textProvided
                     )
                 )
-                .padding()
+                .padding(.horizontal)
+                .padding(.top)
                 if viewStore.state.isLoading {
                     ActivityIndicator()
                 }
@@ -113,6 +118,10 @@ struct RepositoriesView: View {
                     },
                     secondaryButton: .cancel()
                 )
+            }
+            .sheet(isPresented: viewStore.binding(get: { $0.urlToShow != nil },
+                                                  send: RepositoriesViewAction.webViewDismissed)) {
+                WebView(url: viewStore.urlToShow!)
             }
         }
     }
