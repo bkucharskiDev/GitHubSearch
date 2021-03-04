@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 import Combine
 
-enum RepositoriesViewAction {
+enum RepositoriesViewAction: Equatable {
     case textProvided(String)
     case searchForRepositories
     case repositoryTapped(URL)
@@ -21,7 +21,8 @@ enum RepositoriesViewAction {
 
 struct RepositoriesViewEnvironment {
     
-    var searchForRepositories: (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var repositoriesClient: RepositoriesClient
     
 }
 
@@ -34,16 +35,16 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
         struct TypingCompletionId: Hashable {}
         return Effect(value: .searchForRepositories)
             // Debounce typing for 1 second.
-            .debounce(id: TypingCompletionId(), for: 1, scheduler: DispatchQueue.main)
+            .debounce(id: TypingCompletionId(), for: 1, scheduler: environment.mainQueue)
     case .searchForRepositories:
+        state.isAlertPresented = false
         let phrase = state.searchPhrase
         guard !phrase.isEmpty else {
             return .none
         }
-        state.isAlertPresented = false
         state.isLoading = true
         
-        return environment.searchForRepositories(phrase)
+        return environment.repositoriesClient.searchForRepositories(phrase)
             .flatMap { result -> Effect<RepositoriesViewAction, Never> in
                 switch result {
                 case let .success(repositories):
@@ -52,7 +53,7 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
                     return Effect(value: .error)
                 }
             }
-            .receive(on: DispatchQueue.main)
+            .receive(on: environment.mainQueue)
             .eraseToEffect()
     case let .repositoryTapped(url):
         state.urlToShow = url
@@ -113,7 +114,6 @@ struct RepositoriesView: View {
                 Alert(
                     title: Text("Sorry, something went wrong."),
                     primaryButton: .default(Text("Try again")) {
-                        viewStore.send(.alertDismissed)
                         viewStore.send(.searchForRepositories)
                     },
                     secondaryButton: .cancel()
@@ -129,8 +129,14 @@ struct RepositoriesView: View {
 
 struct RepositoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        RepositoriesView(store: Store(initialState: RepositoriesView.ViewState(),
-                                 reducer: repositoriesReducer,
-                                 environment: RepositoriesViewEnvironment(searchForRepositories: { _ in .none })))
+        RepositoriesView(
+            store: Store(initialState: RepositoriesView.ViewState(),
+                         reducer: repositoriesReducer,
+                         environment: RepositoriesViewEnvironment(
+                            mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                            repositoriesClient: RepositoriesClient.live
+                         )
+            )
+        )
     }
 }

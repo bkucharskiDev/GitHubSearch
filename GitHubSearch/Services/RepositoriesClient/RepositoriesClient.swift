@@ -9,15 +9,18 @@ import Foundation
 import Combine
 import ComposableArchitecture
 
-protocol RepositoriesClientProtocol {
-    /// Searches repositories.
-    /// - Parameter phrase: search phrase.
-    func searchForRepositories(_ phrase: String) -> Effect<Result<[Repository], Error>, Never>
+struct RepositoriesClient {
+    
+    var searchForRepositories: (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>
+    
+    init(searchForRepositories: @escaping (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>) {
+        self.searchForRepositories = searchForRepositories
+    }
 }
 
-struct RepositoriesClient: RepositoriesClientProtocol {
+extension RepositoriesClient {
     
-    func searchForRepositories(_ phrase: String) -> Effect<Result<[Repository], Error>, Never> {
+    static let live = RepositoriesClient { phrase in
         /// SearchForRepositoriesId acts as unique id (hash value). It could be plain string also.
         /// However it adds extra protection, as it's almost impossible to duplicate it.
         struct SearchForRepositoriesId: Hashable {}
@@ -33,5 +36,11 @@ struct RepositoriesClient: RepositoriesClientProtocol {
             .compactMap(\.repositories)
             .catchToEffect()
     }
+    
+    #if DEBUG
+    static func mock(searchForRepositories: @escaping (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>) -> Self {
+        Self(searchForRepositories: searchForRepositories)
+    }
+    #endif
     
 }
