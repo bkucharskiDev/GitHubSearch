@@ -11,6 +11,7 @@ import Combine
 
 enum RepositoriesViewAction {
     case textProvided(String)
+    case searchForRepositories
     case repositoryTapped(URL)
     case repositoriesFetched([Repository])
     case alertDismissed
@@ -27,7 +28,13 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
     switch action {
     case let .textProvided(text):
         state.searchPhrase = text
-        return environment.searchForRepositories(text)
+        struct TypingCompletionId: Hashable {}
+        return Effect(value: .searchForRepositories)
+            // Debounce typing for 1 second.
+            .debounce(id: TypingCompletionId(), for: 1, scheduler: DispatchQueue.main)
+    case .searchForRepositories:
+        state.isAlertPresented = false
+        return environment.searchForRepositories(state.searchPhrase)
             .subscribe(on: DispatchQueue.main)
             .catchToEffect()
             .flatMap { result -> Effect<RepositoriesViewAction, Never> in
