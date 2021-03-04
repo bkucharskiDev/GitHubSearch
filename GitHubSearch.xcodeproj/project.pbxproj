@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB025EFCB3900777186 /* GitHubSearchApp.swift */; };
-		8ED2DBB325EFCB3900777186 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB225EFCB3900777186 /* ContentView.swift */; };
+		8ED2DBB325EFCB3900777186 /* RepositoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */; };
 		8ED2DBB525EFCB3A00777186 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB425EFCB3A00777186 /* Assets.xcassets */; };
 		8ED2DBB825EFCB3A00777186 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB725EFCB3A00777186 /* Preview Assets.xcassets */; };
 		8ED2DBC325EFCB3A00777186 /* GitHubSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2DBC225EFCB3A00777186 /* GitHubSearchTests.swift */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		8ED2DBAD25EFCB3900777186 /* GitHubSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED2DBB025EFCB3900777186 /* GitHubSearchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearchApp.swift; sourceTree = "<group>"; };
-		8ED2DBB225EFCB3900777186 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesView.swift; sourceTree = "<group>"; };
 		8ED2DBB425EFCB3A00777186 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ED2DBB725EFCB3A00777186 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8ED2DBB925EFCB3A00777186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 			children = (
 				8ED2DBE425EFCBDD00777186 /* Screens */,
 				8ED2DBB025EFCB3900777186 /* GitHubSearchApp.swift */,
-				8ED2DBB225EFCB3900777186 /* ContentView.swift */,
 				8ED2DBB425EFCB3A00777186 /* Assets.xcassets */,
 				8ED2DBB925EFCB3A00777186 /* Info.plist */,
 				8ED2DBB625EFCB3A00777186 /* Preview Content */,
@@ -139,8 +138,17 @@
 		8ED2DBE425EFCBDD00777186 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8EDA8B4A25F0B77D00CFBC07 /* Repositories */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		8EDA8B4A25F0B77D00CFBC07 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ED2DBB325EFCB3900777186 /* ContentView.swift in Sources */,
+				8ED2DBB325EFCB3900777186 /* RepositoriesView.swift in Sources */,
 				8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */,
 				8EDA8B4325F0B73F00CFBC07 /* Repository.swift in Sources */,
 			);

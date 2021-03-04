@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+import Combine
 
 @main
 struct GitHubSearchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RepositoriesView(store: Store(initialState: RepositoriesView.ViewState(),
+                                          reducer: repositoriesReducer,
+                                          environment: RepositoriesViewEnvironment.init(searchForRepositories: { _ in Future { _ in } })))
         }
     }
 }
