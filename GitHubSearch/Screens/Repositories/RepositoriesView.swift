@@ -35,8 +35,14 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
             // Debounce typing for 1 second.
             .debounce(id: TypingCompletionId(), for: 1, scheduler: DispatchQueue.main)
     case .searchForRepositories:
+        let phrase = state.searchPhrase
+        guard !phrase.isEmpty else {
+            return .none
+        }
         state.isAlertPresented = false
-        return environment.searchForRepositories(state.searchPhrase)
+        state.isLoading = true
+        
+        return environment.searchForRepositories(phrase)
             .flatMap { result -> Effect<RepositoriesViewAction, Never> in
                 switch result {
                 case let .success(repositories):
@@ -51,9 +57,11 @@ let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAc
         state.urlToShow = url
         return .none
     case .error:
+        state.isLoading = false
         state.isAlertPresented = true
         return .none
     case let .repositoriesFetched(repositories):
+        state.isLoading = false
         state.repositories = IdentifiedArray(repositories)
         return .none
     case .alertDismissed:
@@ -85,6 +93,9 @@ struct RepositoriesView: View {
                     )
                 )
                 .padding()
+                if viewStore.state.isLoading {
+                    ActivityIndicator()
+                }
                 List {
                     ForEach(viewStore.state.repositories) { repository in
                         Text(repository.name)
