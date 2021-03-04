@@ -96,7 +96,14 @@ struct RepositoriesView: View {
             }
             .alert(isPresented: viewStore.binding(get: \.isAlertPresented,
                                                   send: RepositoriesViewAction.alertDismissed)) {
-                Alert(title: Text("Sorry, something went wrong."))
+                Alert(
+                    title: Text("Sorry, something went wrong."),
+                    primaryButton: .default(Text("Try again")) {
+                        viewStore.send(.alertDismissed)
+                        viewStore.send(.searchForRepositories)
+                    },
+                    secondaryButton: .cancel()
+                )
             }
         }
     }
