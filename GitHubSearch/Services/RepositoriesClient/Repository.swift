@@ -11,7 +11,7 @@ struct Repository: Equatable, Identifiable, Codable {
     
     enum CodingKeys: String, CodingKey {
         case name
-        case urlString = "url"
+        case urlString = "html_url"
     }
     
     var id: String { urlString }
