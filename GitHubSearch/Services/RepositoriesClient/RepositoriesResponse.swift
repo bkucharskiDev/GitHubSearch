@@ -5,12 +5,12 @@
 //  Created by Bartosz Kucharski on 04/03/2021.
 //
 
-struct RepositoriesResponse: Codable {
+struct RepositoriesResponse: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case repositories = "items"
     }
     
-    let repositories: [Repository]?
+    let repositories: [RepositoryResponse]?
     
 }

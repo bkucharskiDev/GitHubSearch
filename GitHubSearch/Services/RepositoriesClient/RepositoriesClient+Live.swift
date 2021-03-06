@@ -23,7 +23,7 @@ extension RepositoriesClient {
             .cancellable(id: SearchForRepositoriesId(), cancelInFlight: true)
             .map(\.data)
             .decode(type: RepositoriesResponse.self, decoder: JSONDecoder())
-            .compactMap(\.repositories)
+            .compactMap { $0.repositories?.map { $0.toRepository } }
             .catchToEffect()
     }
     

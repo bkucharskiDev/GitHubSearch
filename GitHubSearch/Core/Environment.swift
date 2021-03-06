@@ -7,6 +7,14 @@
 
 import ComposableArchitecture
 
+/// Structure for keeping all dependencies.
+struct Environment {
+    
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var repositoriesClient: RepositoriesClient
+    
+}
+
 // This property should be used only by view factories to inject proper dependencies.
 let Current = Environment(
     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
@@ -23,8 +31,3 @@ let Current = Environment(
 //)
 //#endif
 
-
-struct Environment {
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-    var repositoriesClient: RepositoriesClient
-}

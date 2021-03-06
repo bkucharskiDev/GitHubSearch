@@ -17,16 +17,19 @@ extension RepositoriesClient {
         Self(searchForRepositories: searchForRepositories)
     }
     
-    static let emptyMock: Self = .mock(searchForRepositories: { _ in Effect(value: .success([])) })
-    
     static let happyPathMockUsing: (_ repositories: [Repository]) -> Self = { repositories in
         .mock(searchForRepositories: { _ in Effect(value: .success(repositories)) })
     }
     
     static let happyPathMock: Self = {
-        let mockedRepository = Repository(name: "swift", urlString: "https://github.com/apple/swift")
+        let mockedRepository = Repository(name: "swift",
+                                          description: "The Swift Programming Language",
+                                          url: URL(string: "https://github.com/apple/swift")!,
+                                          imageURL: URL(string: "https://avatars.githubusercontent.com/u/10639145?v=4")!)
         return .happyPathMockUsing([mockedRepository])
     }()
+    
+    static let emptyMock: Self = .happyPathMockUsing([])
     
     static let failureMock: Self = .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
     #endif

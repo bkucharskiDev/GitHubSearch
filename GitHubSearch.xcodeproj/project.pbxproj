@@ -13,6 +13,8 @@
 		8E68A77925F384FE00A24084 /* ViewFactory+Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */; };
 		8E68A77E25F3899700A24084 /* RepositoriesClient+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */; };
 		8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */; };
+		8E68A78A25F40BD100A24084 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68A78925F40BD100A24084 /* Kingfisher */; };
+		8E68A79225F417B900A24084 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A79125F417B900A24084 /* Repository.swift */; };
 		8E6B13CB25F178A1003877D7 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13CA25F178A1003877D7 /* ActivityIndicator.swift */; };
 		8E6B13D325F17E5C003877D7 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13D225F17E5C003877D7 /* WebView.swift */; };
 		8E6B13D825F18363003877D7 /* RepositoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13D725F18363003877D7 /* RepositoriesTests.swift */; };
@@ -22,7 +24,7 @@
 		8ED2DBB825EFCB3A00777186 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ED2DBB725EFCB3A00777186 /* Preview Assets.xcassets */; };
 		8ED2DBCE25EFCB3A00777186 /* GitHubSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED2DBCD25EFCB3A00777186 /* GitHubSearchUITests.swift */; };
 		8ED2DBE025EFCB9800777186 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 8ED2DBDF25EFCB9800777186 /* ComposableArchitecture */; };
-		8EDA8B4325F0B73F00CFBC07 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B4225F0B73F00CFBC07 /* Repository.swift */; };
+		8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */; };
 		8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,7 @@
 		8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewFactory+Repositories.swift"; sourceTree = "<group>"; };
 		8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Live.swift"; sourceTree = "<group>"; };
 		8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Mock.swift"; sourceTree = "<group>"; };
+		8E68A79125F417B900A24084 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		8E6B13CA25F178A1003877D7 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		8E6B13D225F17E5C003877D7 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		8E6B13D725F18363003877D7 /* RepositoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTests.swift; sourceTree = "<group>"; };
@@ -64,7 +67,7 @@
 		8ED2DBC925EFCB3A00777186 /* GitHubSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ED2DBCD25EFCB3A00777186 /* GitHubSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubSearchUITests.swift; sourceTree = "<group>"; };
 		8ED2DBCF25EFCB3A00777186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8EDA8B4225F0B73F00CFBC07 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E68A78A25F40BD100A24084 /* Kingfisher in Frameworks */,
 				8ED2DBE025EFCB9800777186 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,12 +98,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8E68A76F25F384C700A24084 /* Factories */ = {
+		8E68A78725F40A8E00A24084 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				8E68A76A25F3842A00A24084 /* Environment.swift */,
 				8E68A77025F384D500A24084 /* ViewFactory.swift */,
 			);
-			path = Factories;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		8E6B13C825F17842003877D7 /* Common */ = {
@@ -142,7 +147,7 @@
 		8ED2DBAF25EFCB3900777186 /* GitHubSearch */ = {
 			isa = PBXGroup;
 			children = (
-				8E68A76F25F384C700A24084 /* Factories */,
+				8E68A78725F40A8E00A24084 /* Core */,
 				8E6B13C825F17842003877D7 /* Common */,
 				8EDA8B5125F0BC5C00CFBC07 /* Services */,
 				8ED2DBE425EFCBDD00777186 /* Screens */,
@@ -193,6 +198,7 @@
 			children = (
 				8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */,
 				8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */,
+				8E68A79125F417B900A24084 /* Repository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -201,7 +207,6 @@
 			isa = PBXGroup;
 			children = (
 				8EDA8B5A25F0BDEB00CFBC07 /* RepositoriesClient */,
-				8E68A76A25F3842A00A24084 /* Environment.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,7 +216,7 @@
 			children = (
 				8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */,
 				8E18CF5B25F1696100D45E34 /* RepositoriesResponse.swift */,
-				8EDA8B4225F0B73F00CFBC07 /* Repository.swift */,
+				8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */,
 				8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */,
 				8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */,
 			);
@@ -236,6 +241,7 @@
 			name = GitHubSearch;
 			packageProductDependencies = (
 				8ED2DBDF25EFCB9800777186 /* ComposableArchitecture */,
+				8E68A78925F40BD100A24084 /* Kingfisher */,
 			);
 			productName = GitHubSearch;
 			productReference = 8ED2DBAD25EFCB3900777186 /* GitHubSearch.app */;
@@ -310,6 +316,7 @@
 			mainGroup = 8ED2DBA425EFCB3900777186;
 			packageReferences = (
 				8ED2DBDE25EFCB9800777186 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				8E68A78825F40BD100A24084 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 8ED2DBAE25EFCB3900777186 /* Products */;
 			projectDirPath = "";
@@ -356,12 +363,13 @@
 				8E18CF5C25F1696100D45E34 /* RepositoriesResponse.swift in Sources */,
 				8E68A76B25F3842A00A24084 /* Environment.swift in Sources */,
 				8ED2DBB325EFCB3900777186 /* RepositoriesView.swift in Sources */,
+				8E68A79225F417B900A24084 /* Repository.swift in Sources */,
 				8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */,
 				8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */,
 				8E68A77125F384D500A24084 /* ViewFactory.swift in Sources */,
 				8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */,
 				8E6B13CB25F178A1003877D7 /* ActivityIndicator.swift in Sources */,
-				8EDA8B4325F0B73F00CFBC07 /* Repository.swift in Sources */,
+				8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */,
 				8E6B13D325F17E5C003877D7 /* WebView.swift in Sources */,
 				8E68A77925F384FE00A24084 /* ViewFactory+Repositories.swift in Sources */,
 				8E68A77E25F3899700A24084 /* RepositoriesClient+Live.swift in Sources */,
@@ -686,6 +694,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8E68A78825F40BD100A24084 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
+			};
+		};
 		8ED2DBDE25EFCB9800777186 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -697,6 +713,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8E68A78925F40BD100A24084 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E68A78825F40BD100A24084 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		8ED2DBDF25EFCB9800777186 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8ED2DBDE25EFCB9800777186 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
