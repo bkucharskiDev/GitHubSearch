@@ -10,6 +10,7 @@ import ComposableArchitecture
 import Combine
 
 enum RepositoriesViewAction: Equatable {
+    
     case textProvided(String)
     case searchForRepositories
     case repositoryTapped(URL)
@@ -17,11 +18,14 @@ enum RepositoriesViewAction: Equatable {
     case alertDismissed
     case webViewDismissed
     case error
+    
 }
 
 struct RepositoriesViewEnvironment {
+    
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var repositoriesClient: RepositoriesClient
+    
 }
 
 let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAction, RepositoriesViewEnvironment> { state, action, environment in
@@ -123,9 +127,11 @@ struct RepositoriesView: View {
             }
         }
     }
+    
 }
 
 struct RepositoriesView_Previews: PreviewProvider {
+    
     static var previews: some View {
         RepositoriesView(
             store: Store(initialState: RepositoriesView.ViewState(),
@@ -139,4 +145,5 @@ struct RepositoriesView_Previews: PreviewProvider {
             )
         )
     }
+    
 }

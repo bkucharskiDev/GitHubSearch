@@ -6,9 +6,11 @@
 //
 
 struct RepositoriesResponse: Codable {
+    
     private enum CodingKeys: String, CodingKey {
         case repositories = "items"
     }
     
     let repositories: [Repository]?
+    
 }

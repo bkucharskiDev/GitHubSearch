@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct RepositoriesClient {
     
     /// Closure for searching for repositories using search phrase.
-    /// It returns effect of result with repositories or error.
+    /// It returns effect with result with repositories or error.
     var searchForRepositories: (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>
     
     /// Searches for repositories using provided search phrase.
@@ -20,4 +20,5 @@ struct RepositoriesClient {
     init(searchForRepositories: @escaping (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>) {
         self.searchForRepositories = searchForRepositories
     }
+    
 }

@@ -11,7 +11,9 @@ import Combine
 
 @main
 struct GitHubSearchApp: App {
+    
     var body: some Scene {
         WindowGroup { ViewFactory.Repositories.buildRepositoriesView() }
     }
+    
 }

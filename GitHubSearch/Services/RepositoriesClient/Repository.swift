@@ -19,4 +19,5 @@ struct Repository: Equatable, Identifiable, Codable {
     
     let name: String
     let urlString: String
+    
 }
