@@ -21,6 +21,13 @@ extension ViewFactory {
                                                          repositoriesClient: Current.repositoriesClient))
             )
         }
+        
+        /// Creates and returns single repository view.
+        /// - Parameter repository: repository.
+        /// - Returns: repository view.
+        static func buildRepositoryView(_ repository: Repository) -> RepositoryView {
+            RepositoryView(repository: repository)
+        }
     }
     
 }

@@ -107,23 +107,8 @@ struct RepositoriesView: View {
                 }
                 List {
                     ForEach(viewStore.state.repositories) { repository in
-                        VStack(alignment: .leading) {
-                            HStack {
-                                KFImage(repository.imageURL)
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                Text(repository.name)
-                                    .bold()
-                                    .padding(.leading, 5)
-                            }
-                            Text(repository.description ?? "")
-                                .font(.body)
-                                .italic()
-                                .fixedSize(horizontal: false, vertical: true)
-                                .lineLimit(3)
-                        }
-                        .padding(.vertical)
-                        .onTapGesture { viewStore.send(.repositoryTapped(repository.url)) }
+                        ViewFactory.Repositories.buildRepositoryView(repository)
+                            .onTapGesture { viewStore.send(.repositoryTapped(repository.url)) }
                     }
                 }
             }

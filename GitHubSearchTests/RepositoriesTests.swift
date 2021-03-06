@@ -134,7 +134,10 @@ class RepositoriesTests: XCTestCase {
     }
     
     func testTapRepository() {
-        let mockRepository = Repository(name: "Foo", urlString: "http://foo")
+        let mockRepository = Repository(name: "Foo",
+                                        description: nil,
+                                        url: URL(string: "http://foo")!,
+                                        imageURL: URL(string: "http://foo")!)
         let store = TestStore(
             initialState: RepositoriesView.ViewState(),
             reducer: repositoriesReducer,
@@ -157,7 +160,10 @@ class RepositoriesTests: XCTestCase {
     }
     
     func testDismissRepository() {
-        let mockRepository = Repository(name: "Foo", urlString: "http://foo")
+        let mockRepository = Repository(name: "Foo",
+                                        description: nil,
+                                        url: URL(string: "http://foo")!,
+                                        imageURL: URL(string: "http://foo")!)
         let store = TestStore(
             initialState: RepositoriesView.ViewState(),
             reducer: repositoriesReducer,
@@ -181,7 +187,10 @@ class RepositoriesTests: XCTestCase {
     }
     
     func testUnhappyAndHappyPath() {
-        let mockRepository = Repository(name: "Foo", urlString: "http://foo")
+        let mockRepository = Repository(name: "Foo",
+                                        description: nil,
+                                        url: URL(string: "http://foo")!,
+                                        imageURL: URL(string: "http://foo")!)
         let store = TestStore(
             initialState: RepositoriesView.ViewState(),
             reducer: repositoriesReducer,

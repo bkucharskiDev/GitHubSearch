@@ -15,6 +15,7 @@
 		8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */; };
 		8E68A78A25F40BD100A24084 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68A78925F40BD100A24084 /* Kingfisher */; };
 		8E68A79225F417B900A24084 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A79125F417B900A24084 /* Repository.swift */; };
+		8E68A79725F41C9300A24084 /* RepositoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A79625F41C9300A24084 /* RepositoryView.swift */; };
 		8E6B13CB25F178A1003877D7 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13CA25F178A1003877D7 /* ActivityIndicator.swift */; };
 		8E6B13D325F17E5C003877D7 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13D225F17E5C003877D7 /* WebView.swift */; };
 		8E6B13D825F18363003877D7 /* RepositoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6B13D725F18363003877D7 /* RepositoriesTests.swift */; };
@@ -53,6 +54,7 @@
 		8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Live.swift"; sourceTree = "<group>"; };
 		8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Mock.swift"; sourceTree = "<group>"; };
 		8E68A79125F417B900A24084 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		8E68A79625F41C9300A24084 /* RepositoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryView.swift; sourceTree = "<group>"; };
 		8E6B13CA25F178A1003877D7 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		8E6B13D225F17E5C003877D7 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		8E6B13D725F18363003877D7 /* RepositoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesTests.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */,
 				8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */,
 				8E68A79125F417B900A24084 /* Repository.swift */,
+				8E68A79625F41C9300A24084 /* RepositoryView.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */,
 				8E68A77125F384D500A24084 /* ViewFactory.swift in Sources */,
 				8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */,
+				8E68A79725F41C9300A24084 /* RepositoryView.swift in Sources */,
 				8E6B13CB25F178A1003877D7 /* ActivityIndicator.swift in Sources */,
 				8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */,
 				8E6B13D325F17E5C003877D7 /* WebView.swift in Sources */,
