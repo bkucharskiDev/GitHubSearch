@@ -20,7 +20,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .success([])) })
+                repositoriesClient: .emptyMock
             )
         )
         
@@ -41,7 +41,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .success([])) })
+                repositoriesClient: .emptyMock
             )
         )
         
@@ -66,7 +66,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
+                repositoriesClient: .failureMock
             )
         )
         
@@ -87,7 +87,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
+                repositoriesClient: .failureMock
             )
         )
         
@@ -109,7 +109,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
+                repositoriesClient: .failureMock
             )
         )
         
@@ -140,7 +140,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .success([mockRepository])) })
+                repositoriesClient: .happyPathMockUsing([mockRepository])
             )
         )
         
@@ -163,7 +163,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .success([mockRepository])) })
+                repositoriesClient: .happyPathMockUsing([mockRepository])
             )
         )
         
@@ -187,7 +187,7 @@ class RepositoriesTests: XCTestCase {
             reducer: repositoriesReducer,
             environment: RepositoriesViewEnvironment(
                 mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
+                repositoriesClient: .failureMock
             )
         )
         
@@ -200,9 +200,7 @@ class RepositoriesTests: XCTestCase {
                 $0.isAlertPresented = true
             },
             .environment { environment in
-                environment.repositoriesClient.searchForRepositories = { _ in
-                    Effect<Result<[Repository], Error>, Never>(value: .success([mockRepository]))
-                }
+                environment.repositoriesClient = .happyPathMockUsing([mockRepository])
             },
             .send(.searchForRepositories) {
                 $0.isLoading = true

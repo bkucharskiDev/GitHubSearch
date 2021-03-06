@@ -12,14 +12,6 @@ import Combine
 @main
 struct GitHubSearchApp: App {
     var body: some Scene {
-        WindowGroup {
-            RepositoriesView(store: Store(
-                initialState: RepositoriesView.ViewState(),
-                reducer: repositoriesReducer,
-                environment: RepositoriesViewEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                         repositoriesClient: RepositoriesClient.live)
-            )
-            )
-        }
+        WindowGroup { ViewFactory.Repositories.buildRepositoriesView() }
     }
 }

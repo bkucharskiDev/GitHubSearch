@@ -20,10 +20,8 @@ enum RepositoriesViewAction: Equatable {
 }
 
 struct RepositoriesViewEnvironment {
-    
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var repositoriesClient: RepositoriesClient
-    
 }
 
 let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAction, RepositoriesViewEnvironment> { state, action, environment in
@@ -116,7 +114,7 @@ struct RepositoriesView: View {
                     primaryButton: .default(Text("Try again")) {
                         viewStore.send(.searchForRepositories)
                     },
-                    secondaryButton: .cancel()
+                    secondaryButton: .cancel { viewStore.send(.alertDismissed) }
                 )
             }
             .sheet(isPresented: viewStore.binding(get: { $0.urlToShow != nil },
@@ -134,7 +132,9 @@ struct RepositoriesView_Previews: PreviewProvider {
                          reducer: repositoriesReducer,
                          environment: RepositoriesViewEnvironment(
                             mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                            repositoriesClient: RepositoriesClient.live
+                            repositoriesClient: RepositoriesClient.mock(
+                                searchForRepositories: { _ in .none }
+                            )
                          )
             )
         )
