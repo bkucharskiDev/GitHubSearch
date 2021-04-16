@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ '*' ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: macos-10.15
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: xcodebuild test -scheme GitHubSearchTests -destination platform="iOS Simulator",name="iPhone 11 Pro Max"
