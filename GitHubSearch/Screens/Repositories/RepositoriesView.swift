@@ -87,8 +87,9 @@ struct RepositoriesView: View {
         var searchPhrase: String = ""
         var repositories: IdentifiedArrayOf<Repository> = []
     }
-    
+
     let store: Store<RepositoriesView.ViewState, RepositoriesViewAction>
+    @FocusState var isTextFieldFocused: Bool
     
     var body: some View {
         WithViewStore(self.store) { viewStore in
@@ -100,6 +101,7 @@ struct RepositoriesView: View {
                         send: RepositoriesViewAction.textProvided
                     )
                 )
+                .focused($isTextFieldFocused)
                 .padding(.horizontal)
                 .padding(.top)
                 if viewStore.state.isLoading {
@@ -112,6 +114,7 @@ struct RepositoriesView: View {
                     }
                 }
             }
+            .onAppear { self.isTextFieldFocused = true }
             .alert(isPresented: viewStore.binding(get: \.isAlertPresented,
                                                   send: RepositoriesViewAction.alertDismissed)) {
                 Alert(
