@@ -32,6 +32,9 @@ struct RepositoriesViewEnvironment {
 let repositoriesReducer = Reducer<RepositoriesView.ViewState, RepositoriesViewAction, RepositoriesViewEnvironment> { state, action, environment in
     switch action {
     case let .textProvided(text):
+        guard state.searchPhrase != text else {
+          return .none
+        }
         state.searchPhrase = text
         /// TypingCompletionId acts as unique id (hash value). It could be plain string also.
         /// However it adds extra protection, as it's almost impossible to duplicate it.
