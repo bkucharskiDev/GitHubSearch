@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 extension RepositoriesClient {
     
@@ -13,12 +14,12 @@ extension RepositoriesClient {
     /// Creates mock instance of RepositoriesClient.
     /// - Parameter searchForRepositories: mocked closure for searching for repositories.
     /// - Returns: mocked RepositoriesClient.
-    static func mock(searchForRepositories: @escaping (_ phrase: String) -> Effect<Result<[Repository], Error>, Never>) -> Self {
+    static func mock(searchForRepositories: @escaping (_ phrase: String) -> EffectTask<Result<[Repository], Error>>) -> Self {
         Self(searchForRepositories: searchForRepositories)
     }
     
     static let happyPathMockUsing: (_ repositories: [Repository]) -> Self = { repositories in
-        .mock(searchForRepositories: { _ in Effect(value: .success(repositories)) })
+        .mock(searchForRepositories: { _ in EffectTask(value: .success(repositories)) })
     }
     
     static let happyPathMock: Self = {
@@ -31,7 +32,7 @@ extension RepositoriesClient {
     
     static let emptyMock: Self = .happyPathMockUsing([])
     
-    static let failureMock: Self = .mock(searchForRepositories: { _ in Effect(value: .failure(NSError())) })
+    static let failureMock: Self = .mock(searchForRepositories: { _ in EffectTask(value: .failure(NSError())) })
     #endif
     
 }

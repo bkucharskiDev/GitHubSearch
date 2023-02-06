@@ -8,7 +8,7 @@
 import Foundation
 
 struct Repository: Equatable, Identifiable {
-    
+
     var id: URL { url }
     let name: String
     let description: String?

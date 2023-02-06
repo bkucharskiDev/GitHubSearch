@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8E18CF5C25F1696100D45E34 /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E18CF5B25F1696100D45E34 /* RepositoriesResponse.swift */; };
 		8E68A76B25F3842A00A24084 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A76A25F3842A00A24084 /* Environment.swift */; };
-		8E68A77125F384D500A24084 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77025F384D500A24084 /* ViewFactory.swift */; };
-		8E68A77925F384FE00A24084 /* ViewFactory+Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */; };
 		8E68A77E25F3899700A24084 /* RepositoriesClient+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */; };
 		8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */; };
 		8E68A78A25F40BD100A24084 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68A78925F40BD100A24084 /* Kingfisher */; };
@@ -26,6 +24,7 @@
 		8ED2DBE025EFCB9800777186 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 8ED2DBDF25EFCB9800777186 /* ComposableArchitecture */; };
 		8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */; };
 		8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */; };
+		A1A5B73129912BF9005BDC17 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5B73029912BF9005BDC17 /* AppView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +40,6 @@
 /* Begin PBXFileReference section */
 		8E18CF5B25F1696100D45E34 /* RepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
 		8E68A76A25F3842A00A24084 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		8E68A77025F384D500A24084 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
-		8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewFactory+Repositories.swift"; sourceTree = "<group>"; };
 		8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Live.swift"; sourceTree = "<group>"; };
 		8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Mock.swift"; sourceTree = "<group>"; };
 		8E68A79125F417B900A24084 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -60,6 +57,7 @@
 		8ED2DBC425EFCB3A00777186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesClient.swift; sourceTree = "<group>"; };
+		A1A5B73029912BF9005BDC17 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +83,8 @@
 		8E68A78725F40A8E00A24084 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A1A5B72F29912BDA005BDC17 /* App */,
 				8E68A76A25F3842A00A24084 /* Environment.swift */,
-				8E68A77025F384D500A24084 /* ViewFactory.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -170,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				8ED2DBB225EFCB3900777186 /* RepositoriesView.swift */,
-				8E68A77825F384FE00A24084 /* ViewFactory+Repositories.swift */,
 				8E68A79125F417B900A24084 /* Repository.swift */,
 				8E68A79625F41C9300A24084 /* RepositoryView.swift */,
 			);
@@ -195,6 +192,14 @@
 				8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */,
 			);
 			path = RepositoriesClient;
+			sourceTree = "<group>";
+		};
+		A1A5B72F29912BDA005BDC17 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5B73029912BF9005BDC17 /* AppView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,13 +315,12 @@
 				8E68A79225F417B900A24084 /* Repository.swift in Sources */,
 				8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */,
 				8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */,
-				8E68A77125F384D500A24084 /* ViewFactory.swift in Sources */,
 				8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */,
+				A1A5B73129912BF9005BDC17 /* AppView.swift in Sources */,
 				8E68A79725F41C9300A24084 /* RepositoryView.swift in Sources */,
 				8E6B13CB25F178A1003877D7 /* ActivityIndicator.swift in Sources */,
 				8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */,
 				8E6B13D325F17E5C003877D7 /* WebView.swift in Sources */,
-				8E68A77925F384FE00A24084 /* ViewFactory+Repositories.swift in Sources */,
 				8E68A77E25F3899700A24084 /* RepositoriesClient+Live.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,8 +593,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.50.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 /// Structure for keeping all dependencies.
 struct Environment {

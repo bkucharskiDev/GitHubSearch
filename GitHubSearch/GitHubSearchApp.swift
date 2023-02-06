@@ -13,7 +13,7 @@ import Combine
 struct GitHubSearchApp: App {
     
     var body: some Scene {
-        WindowGroup { ViewFactory.Repositories.buildRepositoriesView() }
+      WindowGroup { AppView(store: .init(initialState: .init(), reducer: AppReducer())) }
     }
     
 }
