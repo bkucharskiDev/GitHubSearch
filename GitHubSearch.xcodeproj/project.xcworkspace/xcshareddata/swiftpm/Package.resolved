@@ -1,43 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "combine-schedulers",
-        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
-        "state": {
-          "branch": null,
-          "revision": "ae2f434e81017bb7de02c168fb0bde83cd8370c1",
-          "version": "0.3.1"
-        }
-      },
-      {
-        "package": "Kingfisher",
-        "repositoryURL": "https://github.com/onevcat/Kingfisher",
-        "state": {
-          "branch": null,
-          "revision": "81dd1ce8401137637663046c7314e7c885bcc56d",
-          "version": "6.1.1"
-        }
-      },
-      {
-        "package": "swift-case-paths",
-        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
-        "state": {
-          "branch": null,
-          "revision": "1aa1bf7c4069d9ba2f7edd36dbfc96ff1c58cbff",
-          "version": "0.1.3"
-        }
-      },
-      {
-        "package": "swift-composable-architecture",
-        "repositoryURL": "https://github.com/pointfreeco/swift-composable-architecture",
-        "state": {
-          "branch": null,
-          "revision": "86d6e3551437a88ecd73a789753fd2151761b17d",
-          "version": "0.15.0"
-        }
+  "pins" : [
+    {
+      "identity" : "combine-schedulers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/combine-schedulers",
+      "state" : {
+        "revision" : "ae2f434e81017bb7de02c168fb0bde83cd8370c1",
+        "version" : "0.3.1"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "4433e425e5ebf0ba4b4d73e15128e78047dd2b48",
+        "version" : "6.1.1"
+      }
+    },
+    {
+      "identity" : "swift-case-paths",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-case-paths",
+      "state" : {
+        "revision" : "1aa1bf7c4069d9ba2f7edd36dbfc96ff1c58cbff",
+        "version" : "0.1.3"
+      }
+    },
+    {
+      "identity" : "swift-composable-architecture",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-composable-architecture",
+      "state" : {
+        "revision" : "86d6e3551437a88ecd73a789753fd2151761b17d",
+        "version" : "0.15.0"
+      }
+    }
+  ],
+  "version" : 2
 }
