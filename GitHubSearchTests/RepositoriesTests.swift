@@ -11,217 +11,192 @@ import XCTest
 
 @testable import GitHubSearch
 
+@MainActor
 class RepositoriesTests: XCTestCase {
-    let scheduler = DispatchQueue.testScheduler
-    
-    func testLoading() {
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .emptyMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true } ,
-            .receive(.repositoriesFetched([])) {
-                $0.isLoading = false
-                $0.repositories = []
-            }
-        )
+  let mainQueue = DispatchQueue.test
+
+  func testLoading() async throws {
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .emptyMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.repositoriesFetched([])) {
+      $0.isLoading = false
+      $0.repositories = []
     }
-    
-    func testSearchingDebounce() {
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .emptyMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("a")) { $0.searchPhrase = "a" },
-            .do { self.scheduler.advance(by: 0.5) },
-            .send(.textProvided("abc")) { $0.searchPhrase = "abc" },
-            .do { self.scheduler.advance(by: 0.9) },
-            .send(.textProvided("xdxd")) { $0.searchPhrase = "xdxd" },
-            .do { self.scheduler.advance(by: 1.1) },
-            .receive(.searchForRepositories) { $0.isLoading = true } ,
-            .receive(.repositoriesFetched([])) {
-                $0.isLoading = false
-                $0.repositories = []
-            }
-        )
+  }
+
+  func testSearchingDebounce() async throws {
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .emptyMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("a")) { $0.searchPhrase = "a" }
+    await self.mainQueue.advance(by: 0.5)
+    await store.send(.textProvided("abc")) { $0.searchPhrase = "abc" }
+    await self.mainQueue.advance(by: 0.9)
+    await store.send(.textProvided("xdxd")) { $0.searchPhrase = "xdxd" }
+    await self.mainQueue.advance(by: 1.1)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.repositoriesFetched([])) {
+      $0.isLoading = false
+      $0.repositories = []
     }
-    
-    func testErrorAlertAppear() {
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .failureMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true } ,
-            .receive(.error) {
-                $0.isLoading = false
-                $0.isAlertPresented = true
-            }
-        )
+  }
+
+  func testErrorAlertAppear() async throws {
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .failureMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.error) {
+      $0.isLoading = false
+      $0.isAlertPresented = true
     }
-    
-    func testErrorAlertDismissCancel() {
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .failureMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true } ,
-            .receive(.error) {
-                $0.isLoading = false
-                $0.isAlertPresented = true
-            },
-            .send(.alertDismissed) { $0.isAlertPresented = false }
-        )
+  }
+
+    func testErrorAlertDismissCancel() async throws {
+      let store = TestStore(
+        initialState: RepositoriesReducer.State(),
+        reducer: RepositoriesReducer()
+      )
+      store.dependencies.repositoriesClient = .failureMock
+      store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+      await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+      await self.mainQueue.advance(by: 1.0)
+      await store.receive(.searchForRepositories) { $0.isLoading = true }
+      await store.receive(.error) {
+        $0.isLoading = false
+        $0.isAlertPresented = true
+      }
+      await store.send(.alertDismissed) { $0.isAlertPresented = false }
     }
-    
-    func testErrorAlertDismissTryAgain() {
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .failureMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true } ,
-            .receive(.error) {
-                $0.isLoading = false
-                $0.isAlertPresented = true
-            },
-            .send(.searchForRepositories) {
-                $0.isLoading = true
-                $0.isAlertPresented = false
-            },
-            .do { self.scheduler.advance() },
-            .receive(.error) {
-                $0.isLoading = false
-                $0.isAlertPresented = true
-            }
-        )
+
+    func testErrorAlertDismissTryAgain() async throws {
+      let store = TestStore(
+        initialState: RepositoriesReducer.State(),
+        reducer: RepositoriesReducer()
+      )
+      store.dependencies.repositoriesClient = .failureMock
+      store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+      await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+      await self.mainQueue.advance(by: 1.0)
+      await store.receive(.searchForRepositories) { $0.isLoading = true }
+      await store.receive(.error) {
+        $0.isLoading = false
+        $0.isAlertPresented = true
+      }
+      await store.send(.searchForRepositories) {
+        $0.isLoading = true
+        $0.isAlertPresented = false
+      }
+      await self.mainQueue.advance()
+      await store.receive(.error) {
+        $0.isLoading = false
+        $0.isAlertPresented = true
+      }
     }
-    
-    func testTapRepository() {
-        let mockRepository = Repository(name: "Foo",
-                                        description: nil,
-                                        url: URL(string: "http://foo")!,
-                                        imageURL: URL(string: "http://foo")!)
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .happyPathMockUsing([mockRepository])
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true },
-            .receive(.repositoriesFetched([mockRepository])) {
-                $0.isLoading = false
-                $0.repositories = [mockRepository]
-            },
-            .send(.repositoryTapped(mockRepository.url)) { $0.urlToShow = mockRepository.url }
-        )
+
+  func testTapRepository() async throws {
+    let mockRepository = Repository(
+      name: "Foo",
+      description: nil,
+      url: URL(string: "http://foo")!,
+      imageURL: URL(string: "http://foo")!
+    )
+
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .happyPathMockUsing([mockRepository])
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.repositoriesFetched([mockRepository])) {
+      $0.isLoading = false
+      $0.repositories = [mockRepository]
     }
-    
-    func testDismissRepository() {
-        let mockRepository = Repository(name: "Foo",
-                                        description: nil,
-                                        url: URL(string: "http://foo")!,
-                                        imageURL: URL(string: "http://foo")!)
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .happyPathMockUsing([mockRepository])
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true },
-            .receive(.repositoriesFetched([mockRepository])) {
-                $0.isLoading = false
-                $0.repositories = [mockRepository]
-            },
-            .send(.repositoryTapped(mockRepository.url)) { $0.urlToShow = mockRepository.url },
-            .send(.webViewDismissed) { $0.urlToShow = nil }
-        )
+    await store.send(.repositoryTapped(mockRepository.url)) { $0.urlToShow = mockRepository.url }
+  }
+
+  func testDismissRepository() async throws {
+    let mockRepository = Repository(
+      name: "Foo",
+      description: nil,
+      url: URL(string: "http://foo")!,
+      imageURL: URL(string: "http://foo")!
+    )
+
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .happyPathMockUsing([mockRepository])
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.repositoriesFetched([mockRepository])) {
+      $0.isLoading = false
+      $0.repositories = [mockRepository]
     }
-    
-    func testUnhappyAndHappyPath() {
-        let mockRepository = Repository(name: "Foo",
-                                        description: nil,
-                                        url: URL(string: "http://foo")!,
-                                        imageURL: URL(string: "http://foo")!)
-        let store = TestStore(
-            initialState: RepositoriesView.ViewState(),
-            reducer: repositoriesReducer,
-            environment: RepositoriesViewEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                repositoriesClient: .failureMock
-            )
-        )
-        
-        store.assert(
-            .send(.textProvided("swift")) { $0.searchPhrase = "swift" },
-            .do { self.scheduler.advance(by: 1.0) },
-            .receive(.searchForRepositories) { $0.isLoading = true },
-            .receive(.error) {
-                $0.isLoading = false
-                $0.isAlertPresented = true
-            },
-            .environment { environment in
-                environment.repositoriesClient = .happyPathMockUsing([mockRepository])
-            },
-            .send(.searchForRepositories) {
-                $0.isLoading = true
-                $0.isAlertPresented = false
-            },
-            .do { self.scheduler.advance() },
-            .receive(.repositoriesFetched([mockRepository])) {
-                $0.isLoading = false
-                $0.repositories = [mockRepository]
-            }
-        )
+    await store.send(.repositoryTapped(mockRepository.url)) { $0.urlToShow = mockRepository.url }
+    await store.send(.webViewDismissed) { $0.urlToShow = nil }
+  }
+
+  func testUnhappyAndHappyPath() async throws {
+    let mockRepository = Repository(
+      name: "Foo",
+      description: nil,
+      url: URL(string: "http://foo")!,
+      imageURL: URL(string: "http://foo")!
+    )
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .failureMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.error) {
+      $0.isLoading = false
+      $0.isAlertPresented = true
     }
+    store.dependencies.repositoriesClient = .happyPathMockUsing([mockRepository])
+    await store.send(.searchForRepositories) {
+      $0.isLoading = true
+      $0.isAlertPresented = false
+    }
+    await self.mainQueue.advance()
+    await store.receive(.repositoriesFetched([mockRepository])) {
+      $0.isLoading = false
+      $0.repositories = [mockRepository]
+    }
+  }
     
     
 }
