@@ -24,6 +24,7 @@
 		8EDA8B4325F0B73F00CFBC07 /* RepositoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */; };
 		8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */; };
 		A1A5B73129912BF9005BDC17 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5B73029912BF9005BDC17 /* AppView.swift */; };
+		A1A5B73429924619005BDC17 /* LogReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5B73329924619005BDC17 /* LogReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		8EDA8B4225F0B73F00CFBC07 /* RepositoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryResponse.swift; sourceTree = "<group>"; };
 		8EDA8B5225F0BC6B00CFBC07 /* RepositoriesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesClient.swift; sourceTree = "<group>"; };
 		A1A5B73029912BF9005BDC17 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		A1A5B73329924619005BDC17 /* LogReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		8E6B13C825F17842003877D7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				A1A5B73229924604005BDC17 /* Reducers */,
 				8E6B13C925F17846003877D7 /* Views */,
 			);
 			path = Common;
@@ -197,6 +200,14 @@
 				A1A5B73029912BF9005BDC17 /* AppView.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		A1A5B73229924604005BDC17 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				A1A5B73329924619005BDC17 /* LogReducer.swift */,
+			);
+			path = Reducers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +320,7 @@
 				8E18CF5C25F1696100D45E34 /* RepositoriesResponse.swift in Sources */,
 				8ED2DBB325EFCB3900777186 /* RepositoriesView.swift in Sources */,
 				8E68A79225F417B900A24084 /* Repository.swift in Sources */,
+				A1A5B73429924619005BDC17 /* LogReducer.swift in Sources */,
 				8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */,
 				8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */,
 				8EDA8B5325F0BC6B00CFBC07 /* RepositoriesClient.swift in Sources */,

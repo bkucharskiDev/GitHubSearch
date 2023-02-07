@@ -37,6 +37,7 @@ struct AppReducer: ReducerProtocol {
     ) {
       RepositoriesReducer()
     }
+    LogReducer()
   }
 
 }
