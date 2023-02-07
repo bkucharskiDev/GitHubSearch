@@ -16,23 +16,23 @@ extension DependencyValues {
 }
 
 extension RepositoriesClient: DependencyKey {
-    
-    /// Production version of RepositoriesClient.
-    static let liveValue = RepositoriesClient { phrase in
-        /// SearchForRepositoriesId acts as unique id (hash value). It could be plain string also.
-        /// However it adds extra protection, as it's almost impossible to duplicate it.
-        struct SearchForRepositoriesId: Hashable {}
-        
-        return URLSession.shared
-            .dataTaskPublisher(for: getRepositoriesURLRequest(phrase: phrase))
-            .eraseToEffect()
-            .cancellable(id: SearchForRepositoriesId(), cancelInFlight: true)
-            .map(\.data)
-            .decode(type: RepositoriesResponse.self, decoder: JSONDecoder())
-            .compactMap { $0.repositories?.map { $0.toRepository } }
-            .catchToEffect()
-    }
-    
+
+  /// Production version of RepositoriesClient.
+  static let liveValue = RepositoriesClient { phrase in
+    /// SearchForRepositoriesId acts as unique id (hash value). It could be plain string also.
+    /// However it adds extra protection, as it's almost impossible to duplicate it.
+    struct SearchForRepositoriesId: Hashable {}
+
+    return URLSession.shared
+      .dataTaskPublisher(for: getRepositoriesURLRequest(phrase: phrase))
+      .eraseToEffect()
+      .cancellable(id: SearchForRepositoriesId(), cancelInFlight: true)
+      .map(\.data)
+      .decode(type: RepositoriesResponse.self, decoder: JSONDecoder())
+      .compactMap { $0.repositories?.map { $0.toRepository } }
+      .catchToEffect()
+  }
+
 }
 
 private extension RepositoriesClient {

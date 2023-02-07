@@ -11,9 +11,9 @@ import Combine
 
 @main
 struct GitHubSearchApp: App {
-    
-    var body: some Scene {
-      WindowGroup { AppView(store: .init(initialState: .init(), reducer: AppReducer())) }
-    }
-    
+  
+  var body: some Scene {
+    WindowGroup { AppView(store: .init(initialState: .init(), reducer: AppReducer())) }
+  }
+  
 }

@@ -70,49 +70,49 @@ class RepositoriesTests: XCTestCase {
     }
   }
 
-    func testErrorAlertDismissCancel() async throws {
-      let store = TestStore(
-        initialState: RepositoriesReducer.State(),
-        reducer: RepositoriesReducer()
-      )
-      store.dependencies.repositoriesClient = .failureMock
-      store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+  func testErrorAlertDismissCancel() async throws {
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .failureMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
 
-      await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
-      await self.mainQueue.advance(by: 1.0)
-      await store.receive(.searchForRepositories) { $0.isLoading = true }
-      await store.receive(.error) {
-        $0.isLoading = false
-        $0.isAlertPresented = true
-      }
-      await store.send(.alertDismissed) { $0.isAlertPresented = false }
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.error) {
+      $0.isLoading = false
+      $0.isAlertPresented = true
     }
+    await store.send(.alertDismissed) { $0.isAlertPresented = false }
+  }
 
-    func testErrorAlertDismissTryAgain() async throws {
-      let store = TestStore(
-        initialState: RepositoriesReducer.State(),
-        reducer: RepositoriesReducer()
-      )
-      store.dependencies.repositoriesClient = .failureMock
-      store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
+  func testErrorAlertDismissTryAgain() async throws {
+    let store = TestStore(
+      initialState: RepositoriesReducer.State(),
+      reducer: RepositoriesReducer()
+    )
+    store.dependencies.repositoriesClient = .failureMock
+    store.dependencies.mainQueue = self.mainQueue.eraseToAnyScheduler()
 
-      await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
-      await self.mainQueue.advance(by: 1.0)
-      await store.receive(.searchForRepositories) { $0.isLoading = true }
-      await store.receive(.error) {
-        $0.isLoading = false
-        $0.isAlertPresented = true
-      }
-      await store.send(.searchForRepositories) {
-        $0.isLoading = true
-        $0.isAlertPresented = false
-      }
-      await self.mainQueue.advance()
-      await store.receive(.error) {
-        $0.isLoading = false
-        $0.isAlertPresented = true
-      }
+    await store.send(.textProvided("swift")) { $0.searchPhrase = "swift" }
+    await self.mainQueue.advance(by: 1.0)
+    await store.receive(.searchForRepositories) { $0.isLoading = true }
+    await store.receive(.error) {
+      $0.isLoading = false
+      $0.isAlertPresented = true
     }
+    await store.send(.searchForRepositories) {
+      $0.isLoading = true
+      $0.isAlertPresented = false
+    }
+    await self.mainQueue.advance()
+    await store.receive(.error) {
+      $0.isLoading = false
+      $0.isAlertPresented = true
+    }
+  }
 
   func testTapRepository() async throws {
     let mockRepository = Repository(
@@ -197,6 +197,5 @@ class RepositoriesTests: XCTestCase {
       $0.repositories = [mockRepository]
     }
   }
-    
-    
+
 }

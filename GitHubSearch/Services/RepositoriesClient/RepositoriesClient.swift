@@ -10,15 +10,15 @@ import Combine
 import ComposableArchitecture
 
 struct RepositoriesClient {
-    
-    /// Closure for searching for repositories using search phrase.
-    /// It returns effect with result with repositories or error.
-    var searchForRepositories: (_ phrase: String) -> EffectTask<Result<[Repository], Error>>
-    
-    /// Searches for repositories using provided search phrase.
-    /// - Parameter searchForRepositories: closure that searches for repositories using search phrase.
-    init(searchForRepositories: @escaping (_ phrase: String) -> EffectTask<Result<[Repository], Error>>) {
-        self.searchForRepositories = searchForRepositories
-    }
-    
+  
+  /// Closure for searching for repositories using search phrase.
+  /// It returns effect with result with repositories or error.
+  var searchForRepositories: (_ phrase: String) -> EffectTask<Result<[Repository], Error>>
+  
+  /// Searches for repositories using provided search phrase.
+  /// - Parameter searchForRepositories: closure that searches for repositories using search phrase.
+  init(searchForRepositories: @escaping (_ phrase: String) -> EffectTask<Result<[Repository], Error>>) {
+    self.searchForRepositories = searchForRepositories
+  }
+  
 }
