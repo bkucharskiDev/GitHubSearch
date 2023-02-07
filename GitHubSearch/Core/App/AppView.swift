@@ -13,21 +13,38 @@ struct AppView: View {
   let store: StoreOf<AppReducer>
 
   var body: some View {
-    RepositoriesView(store: self.store.scope(
-      state: \AppReducer.State.repositoriesState,
-      action: AppReducer.Action.repositories
-    ))
+    WithViewStore(store.scope(state: \.isDemoOngoing)) { viewStore in
+      ZStack(alignment: .bottomTrailing) {
+        RepositoriesView(store: self.store.scope(
+          state: \AppReducer.State.repositoriesState,
+          action: AppReducer.Action.repositories
+        ))
+        Button("Demo") {
+          viewStore.send(.demoButtonTapped)
+        }
+        .disabled(viewStore.state)
+        .padding()
+        .foregroundColor(Color.white)
+        .font(.title)
+        .background { viewStore.state ? Color.gray : Color.blue }
+        .cornerRadius(32)
+        .padding(.trailing)
+        .padding(.bottom)
+      }
+    }
   }
 }
 
 struct AppReducer: ReducerProtocol {
 
   struct State: Equatable {
+    var isDemoOngoing = false
     var repositoriesState = RepositoriesReducer.State()
   }
 
   enum Action: Equatable {
     case repositories(RepositoriesReducer.Action)
+    case demoButtonTapped
   }
 
   public var body: some ReducerProtocol<State, Action> {
@@ -38,6 +55,7 @@ struct AppReducer: ReducerProtocol {
       RepositoriesReducer()
     }
     LogReducer()
+    DemoReducer()
   }
 
 }
