@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8E18CF5C25F1696100D45E34 /* RepositoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E18CF5B25F1696100D45E34 /* RepositoriesResponse.swift */; };
-		8E68A76B25F3842A00A24084 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A76A25F3842A00A24084 /* Environment.swift */; };
 		8E68A77E25F3899700A24084 /* RepositoriesClient+Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */; };
 		8E68A78325F389EC00A24084 /* RepositoriesClient+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */; };
 		8E68A78A25F40BD100A24084 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8E68A78925F40BD100A24084 /* Kingfisher */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		8E18CF5B25F1696100D45E34 /* RepositoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesResponse.swift; sourceTree = "<group>"; };
-		8E68A76A25F3842A00A24084 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		8E68A77D25F3899700A24084 /* RepositoriesClient+Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Live.swift"; sourceTree = "<group>"; };
 		8E68A78225F389EC00A24084 /* RepositoriesClient+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoriesClient+Mock.swift"; sourceTree = "<group>"; };
 		8E68A79125F417B900A24084 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				A1A5B72F29912BDA005BDC17 /* App */,
-				8E68A76A25F3842A00A24084 /* Environment.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -310,7 +307,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E18CF5C25F1696100D45E34 /* RepositoriesResponse.swift in Sources */,
-				8E68A76B25F3842A00A24084 /* Environment.swift in Sources */,
 				8ED2DBB325EFCB3900777186 /* RepositoriesView.swift in Sources */,
 				8E68A79225F417B900A24084 /* Repository.swift in Sources */,
 				8ED2DBB125EFCB3900777186 /* GitHubSearchApp.swift in Sources */,

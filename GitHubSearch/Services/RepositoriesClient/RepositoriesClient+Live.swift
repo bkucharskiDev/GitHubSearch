@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import Dependencies
 
-extension RepositoriesClient {
+extension DependencyValues {
+  var repositoriesClient: RepositoriesClient {
+    get { self[RepositoriesClient.self] }
+    set { self[RepositoriesClient.self] = newValue }
+  }
+}
+
+extension RepositoriesClient: DependencyKey {
     
     /// Production version of RepositoriesClient.
-    static let live = RepositoriesClient { phrase in
+    static let liveValue = RepositoriesClient { phrase in
         /// SearchForRepositoriesId acts as unique id (hash value). It could be plain string also.
         /// However it adds extra protection, as it's almost impossible to duplicate it.
         struct SearchForRepositoriesId: Hashable {}

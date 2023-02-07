@@ -30,6 +30,7 @@ struct RepositoriesReducer: ReducerProtocol {
   }
 
   @Dependency(\.mainQueue) var mainQueue
+  @Dependency(\.repositoriesClient) var repositoriesClient
 
   func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
     switch action {
@@ -53,7 +54,7 @@ struct RepositoriesReducer: ReducerProtocol {
         }
         state.isLoading = true
 
-      return RepositoriesClient.live.searchForRepositories(phrase)
+      return repositoriesClient.searchForRepositories(phrase)
         .flatMap { result -> EffectTask<RepositoriesReducer.Action> in
                 switch result {
                 case let .success(repositories):
