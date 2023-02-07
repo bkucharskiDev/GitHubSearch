@@ -10,8 +10,12 @@ import Dispatch
 
 struct DemoReducer: ReducerProtocol {
 
+  struct State: Equatable {
+    var isDemoOngoing = false
+  }
+
   // Showcase for little Demo functionality
-  func reduce(into state: inout AppReducer.State, action: AppReducer.Action) -> EffectTask<AppReducer.Action> {
+  func reduce(into state: inout State, action: AppReducer.Action) -> EffectTask<AppReducer.Action> {
     switch action {
     case .demoButtonTapped:
       state.isDemoOngoing = true

@@ -13,7 +13,7 @@ struct AppView: View {
   let store: StoreOf<AppReducer>
 
   var body: some View {
-    WithViewStore(store.scope(state: \.isDemoOngoing)) { viewStore in
+    WithViewStore(store.scope(state: \.demoState)) { viewStore in
       ZStack(alignment: .bottomTrailing) {
         RepositoriesView(store: self.store.scope(
           state: \AppReducer.State.repositoriesState,
@@ -22,11 +22,11 @@ struct AppView: View {
         Button("Demo") {
           viewStore.send(.demoButtonTapped)
         }
-        .disabled(viewStore.state)
+        .disabled(viewStore.state?.isDemoOngoing ?? false)
         .padding()
         .foregroundColor(Color.white)
         .font(.title)
-        .background { viewStore.state ? Color.gray : Color.blue }
+        .background { viewStore.state?.isDemoOngoing == true ? Color.gray : Color.blue }
         .cornerRadius(32)
         .padding(.trailing)
         .padding(.bottom)
@@ -38,7 +38,7 @@ struct AppView: View {
 struct AppReducer: ReducerProtocol {
 
   struct State: Equatable {
-    var isDemoOngoing = false
+    var demoState: DemoReducer.State?
     var repositoriesState = RepositoriesReducer.State()
   }
 
@@ -48,14 +48,28 @@ struct AppReducer: ReducerProtocol {
   }
 
   public var body: some ReducerProtocol<State, Action> {
+    Reduce { state, action in
+      switch action {
+      case .demoButtonTapped:
+        state.demoState = .init()
+      case .repositories(.repositoryTapped):
+        state.demoState = nil
+      default:
+        return .none
+      }
+      return .none
+    }
     Scope(
       state: \State.repositoriesState,
       action: /Action.repositories
     ) {
       RepositoriesReducer()
     }
+    .ifLet(\.demoState, action: /Action.self) {
+      DemoReducer()
+    }
     LogReducer()
-    DemoReducer()
+
   }
 
 }
