@@ -1,0 +1,1 @@
+Hello! This is small application code for showing my skills. App was written using SwiftUI and The Composable Architecture from PointFree. I want to show my experience with that technology. Also check yaml file for GitHub Actions.
