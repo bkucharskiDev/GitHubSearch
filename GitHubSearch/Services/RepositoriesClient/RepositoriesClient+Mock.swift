@@ -19,12 +19,14 @@ extension RepositoriesClient: TestDependencyKey {
   /// Creates mock instance of RepositoriesClient.
   /// - Parameter searchForRepositories: mocked closure for searching for repositories.
   /// - Returns: mocked RepositoriesClient.
-  static func mock(searchForRepositories: @escaping (_ phrase: String) -> EffectTask<Result<[Repository], Error>>) -> Self {
-    Self(searchForRepositories: searchForRepositories)
+  static func mock(searchForRepositories: @escaping (_ phrase: String) -> Effect<Result<[Repository], Error>>) -> Self {
+      fatalError()
+//    Self(searchForRepositories: searchForRepositories)
   }
   
   static let happyPathMockUsing: (_ repositories: [Repository]) -> Self = { repositories in
-      .mock(searchForRepositories: { _ in EffectTask(value: .success(repositories)) })
+      fatalError()
+//      .mock(searchForRepositories: { _ in .success(repositories) })
   }
   
   static let happyPathMock: Self = {
@@ -37,7 +39,7 @@ extension RepositoriesClient: TestDependencyKey {
   
   static let emptyMock: Self = .happyPathMockUsing([])
   
-  static let failureMock: Self = .mock(searchForRepositories: { _ in EffectTask(value: .failure(NSError())) })
+    static let failureMock: Self = .mock(searchForRepositories: { _ in fatalError() }) //.failure(NSError()) })
 #endif
   
 }

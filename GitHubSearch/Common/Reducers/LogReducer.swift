@@ -7,14 +7,17 @@
 
 import ComposableArchitecture
 
-struct LogReducer: ReducerProtocol {
+@Reducer
+struct LogReducer {
 
-  // We are able to register every action that is needed. Here is just a simple example.
-  func reduce(into state: inout AppReducer.State, action: AppReducer.Action) -> EffectTask<AppReducer.Action> {
-  #if DEBUG
-    print("Registered action: \(action)")
-  #endif
-    return .none
-  }
+    // We are able to register every action that is needed. Here is just a simple example.
+    var body: some Reducer<AppReducer.State, AppReducer.Action> {
+        Reduce { _, action in
+        #if DEBUG
+            print("Registered action: \(action)")
+        #endif
+            return .none
+        }
+    }
 
 }

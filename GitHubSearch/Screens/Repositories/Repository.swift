@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Repository: Equatable, Identifiable {
+struct Repository: Equatable, Identifiable, Decodable {
   var id: URL { url }
   let name: String
   let description: String?

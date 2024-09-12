@@ -8,6 +8,8 @@
 import Foundation
 import Dependencies
 
+private let jsonDecoder = JSONDecoder()
+
 extension DependencyValues {
   var repositoriesClient: RepositoriesClient {
     get { self[RepositoriesClient.self] }
@@ -23,14 +25,9 @@ extension RepositoriesClient: DependencyKey {
     /// However it adds extra protection, as it's almost impossible to duplicate it.
     struct SearchForRepositoriesId: Hashable {}
 
-    return URLSession.shared
-      .dataTaskPublisher(for: getRepositoriesURLRequest(phrase: phrase))
-      .eraseToEffect()
-      .cancellable(id: SearchForRepositoriesId(), cancelInFlight: true)
-      .map(\.data)
-      .decode(type: RepositoriesResponse.self, decoder: JSONDecoder())
-      .compactMap { $0.repositories?.map { $0.toRepository } }
-      .catchToEffect()
+      let (data, _) = try await URLSession.shared
+          .data(from: getRepositoriesURLRequest(phrase: phrase).url!)
+      return try jsonDecoder.decode([Repository].self, from: data)
   }
 
 }

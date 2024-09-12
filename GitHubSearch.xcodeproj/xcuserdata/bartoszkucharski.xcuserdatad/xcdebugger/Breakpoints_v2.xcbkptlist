@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "76F5A5D8-10A9-4DD2-8B6D-1B35BD8B047B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32D562B2-A957-457E-BE34-CFE28AAFFE32"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Common/Reducers/DemoReducer.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "reduce(into:action:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "32D562B2-A957-457E-BE34-CFE28AAFFE32 - e2a35cfb7bab6beb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 (Swift.Character) async throws -&gt; () in closure #1 @Sendable (ComposableArchitecture.Send&lt;GitHubSearch.AppReducer.Action&gt;) async throws -&gt; () in GitHubSearch.DemoReducer.reduce(into: inout GitHubSearch.DemoReducer.State, action: GitHubSearch.AppReducer.Action) -&gt; ComposableArchitecture.Effect&lt;GitHubSearch.AppReducer.Action&gt;"
+                  moduleName = "GitHubSearch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartoszkucharski/Desktop/Projekty/GitHubSearch/GitHubSearch/Common/Reducers/DemoReducer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "184">
+               </Location>
+               <Location
+                  uuid = "32D562B2-A957-457E-BE34-CFE28AAFFE32 - 3972ad6bc9bfb5ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 (Swift.Character) async throws -&gt; () in closure #1 @Sendable (ComposableArchitecture.Send&lt;GitHubSearch.AppReducer.Action&gt;) async throws -&gt; () in GitHubSearch.DemoReducer.reduce(into: inout GitHubSearch.DemoReducer.State, action: GitHubSearch.AppReducer.Action) -&gt; ComposableArchitecture.Effect&lt;GitHubSearch.AppReducer.Action&gt;"
+                  moduleName = "GitHubSearch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartoszkucharski/Desktop/Projekty/GitHubSearch/GitHubSearch/Common/Reducers/DemoReducer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "32D562B2-A957-457E-BE34-CFE28AAFFE32 - 5f4c3fdb985017f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 (Swift.Character) async throws -&gt; () in closure #1 @Sendable (ComposableArchitecture.Send&lt;GitHubSearch.AppReducer.Action&gt;) async throws -&gt; () in GitHubSearch.DemoReducer.reduce(into: inout GitHubSearch.DemoReducer.State, action: GitHubSearch.AppReducer.Action) -&gt; ComposableArchitecture.Effect&lt;GitHubSearch.AppReducer.Action&gt;"
+                  moduleName = "GitHubSearch"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bartoszkucharski/Desktop/Projekty/GitHubSearch/GitHubSearch/Common/Reducers/DemoReducer.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A1E5B39F-D3EC-4158-8C81-14E1A843FBDB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Core/App/AppView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11F00DC6-6325-4C21-AA1E-F4D677AA4CF4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Core/App/AppView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3EEC00A6-73DC-451B-80D6-3F1D54D1F56E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Core/App/AppView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86948F71-2AD5-4A12-8495-15F87157387C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Core/App/AppView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9C9FD122-802C-47F4-87FA-A58E60BE1E9F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Screens/Repositories/RepositoriesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "reduce(into:action:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E121496F-EAD3-43EB-923A-83F5C7F98F8C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubSearch/Screens/Repositories/RepositoriesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "reduce(into:action:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
